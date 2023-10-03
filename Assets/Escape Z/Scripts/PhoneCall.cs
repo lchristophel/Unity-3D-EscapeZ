@@ -7,16 +7,22 @@ public class PhoneCall : MonoBehaviour
     public GameObject phone;
     public AudioSource phoneAudioSource;
     
-    IEnumerator Start()
+    void Start()
     {
-        Debug.Log("lancement");
-        // Attendre 3 secondes
-        yield return new WaitForSeconds(3f);
-        Debug.Log("3 secondes");
+        // Appeler la fonction après 3 secondes
+        StartCoroutine(CallFunctionWithDelay(3f));  // 3 secondes
+    }
 
-        phone.SetActive(true);
-        Debug.Log("1 instruction");
-        phoneAudioSource.Play();
-        Debug.Log("2 instruction");
+    private IEnumerator CallFunctionWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        // Appeler ta fonction ici
+        PhoneCalling();
+    }
+
+    private void PhoneCalling()
+    {
+            phone.SetActive(true);
+            phoneAudioSource.Play();
     }
 }
