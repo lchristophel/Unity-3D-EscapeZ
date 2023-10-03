@@ -3,8 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class GameOverScreen : MonoBehaviour
 {
-    private bool isPaused = false; // Bool de la pause
-
     public void RestartGame()
     {
         // Rechargez la scène actuelle
