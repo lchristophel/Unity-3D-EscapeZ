@@ -6,7 +6,7 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         // Charger la scène du jeu (à adapter avec le nom de votre scène de jeu)
-        SceneManager.LoadScene("EscapeZ");
+        SceneManager.LoadScene(1);
     }
 }
 

@@ -11,6 +11,12 @@ public class GameOverScreen : MonoBehaviour
         Cursor.visible = false;
     }
 
+    public void QuitGame()
+    {
+        // Retourne à l'écran d'accueil
+        SceneManager.LoadScene(0);
+    }
+
     public void Quit()
     {
         // Quitte l'application (uniquement en mode standalone, pas en mode éditeur)
