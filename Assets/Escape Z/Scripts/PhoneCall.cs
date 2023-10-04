@@ -1,22 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PhoneCall : MonoBehaviour
 {
     public GameObject phone;
     public AudioSource phoneAudioSource;
+    public AudioClip Call;
     
-    IEnumerator Start()
+    void Start()
     {
-        Debug.Log("lancement");
-        // Attendre 3 secondes
-        yield return new WaitForSeconds(3f);
-        Debug.Log("3 secondes");
+        // Appeler la fonction après 3 secondes
+        StartCoroutine(CallFunctionWithDelay(8f)); // 3 secondes
+    }
 
+    private IEnumerator CallFunctionWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        // Appeler ta fonction ici
+        PhoneCalling();
+    }
+
+    private void PhoneCalling()
+    {
         phone.SetActive(true);
-        Debug.Log("1 instruction");
         phoneAudioSource.Play();
-        Debug.Log("2 instruction");
+        phoneAudioSource.PlayOneShot(Call);
+        SceneManager.LoadScene(2);
     }
 }
