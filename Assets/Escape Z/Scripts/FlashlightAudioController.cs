@@ -3,25 +3,27 @@ using UnityEngine;
 public class FlashLightAudioController : MonoBehaviour
 {
     public Light flashlight;  // Référence à la lumière de la lampe torche
-    public AudioSource flashLightAudioSource;
-    public AudioClip switchOn;
-    public AudioClip switchOff;
+    public AudioSource flashLightAudioSource; // Référence à l'audio source de la lampe torche
+    public AudioClip switchOn; // Audio clip d'activation de lampe torche
+    public AudioClip switchOff; // Audio clip de désactivation de la lampe torche
 
-    void Update()
+    void Update() // Vérifier constamment
     {
-        // Vérifier si la touche primaire de la souris est enfoncée
+        // Si la touche primaire de la souris est enfoncée
         if (Input.GetMouseButtonDown(0))
         {
             // Inverser l'état de la lumière (activer si désactivée, et vice versa)
             bool isFlashlightActive = flashlight.gameObject.activeSelf;
             flashlight.gameObject.SetActive(!flashlight.gameObject.activeSelf);
+
+            // Si la lampe toche est active
             if(isFlashlightActive)
-            { // Si l'audioSource de la lampe torche n'est pas en train de jouer un son
-                flashLightAudioSource.PlayOneShot(switchOff); // Jouer le son off de la flashlight
+            { // Jouer le son de de désactivation
+                flashLightAudioSource.PlayOneShot(switchOff);
             }
             else
-            {
-                flashLightAudioSource.PlayOneShot(switchOn); // Jouer le son off de la flashlight
+            { // Jouer le son d'activation
+                flashLightAudioSource.PlayOneShot(switchOn);
             }
         }
     }

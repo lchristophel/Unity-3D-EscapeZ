@@ -1,26 +1,25 @@
-using UnityEngine;
+using UnityEngine; // ne pas oublier le namespace
 
 public class ZombieMovement : MonoBehaviour
 {
-    public float movementSpeed = 3f; // Vitesse du zombie
+    public float movementSpeed = 3f; // Variable de vitesse de déplacement du zombie
     public float obstacleDetectionRange = 2f; // Distance de détection des obstacles par le zombie
     public float playerDetectionRange = 5f; // Distance de détection du joueur par le zombie
     public float changeDirectionInterval = 1.5f; // Interval pour que le zombie change de direction
     public float playerDeathDistance = 1f; // Distance entre le zombie et le joueur pour qu'il meurt
-    public AudioSource playerAudioSource; // L'audio source du joueur
-    public AudioSource ambientAudioSource; // L'audio source de l'ambiance
-    public AudioClip deathSound; // L'audio clip lors de la mort du joueur
-    public AudioClip zombieSound; // L'audio clip du son du zombie
+    public AudioSource playerAudioSource; // L'audio source du GO du joueur
+    public AudioSource ambientAudioSource; // L'audio source du GO de l'ambiance
+    public AudioClip deathSound; // L'audio clip de la mort du joueur
+    public AudioClip zombieSound; // L'audio clip du cri du zombie
     public GameObject deathScreen; // GO de l'écran de mort
     public Rigidbody playerRigidbody; // Rb du joueur
     public FirstPersonLook firstPersonLook; // Script de vision FPS
-    public float soundDistance = 10f; // Distance à partir de laquelle on peut entendre le zombie
+    public float soundDistance = 10f; // Distance à partir de laquelle on ne peut plus entendre le zombie
     public float fadeDuration = 1.0f; // Durée du fondu du son
     
     private bool isFollowingPlayer = false; // Est en train de suivre le joueur ?
     private float timer; // Timer
     private AudioSource audioSource; // L'AudioSource du zombie
-    private Animator animator; // Animator
     private Transform player; // Infos du joueur (Position / taille etc.)
     private Vector3 currentDirection; // Position en cours 
     private float initialVolume; // Volume initial du son du zombie
@@ -31,7 +30,6 @@ public class ZombieMovement : MonoBehaviour
         audioSource.clip = zombieSound; // Assigner l'audio clip à la variable zombieSound
         initialVolume = audioSource.volume; // Récupérer le volume initial du son du zombie
         timer = changeDirectionInterval;
-        animator = GetComponent<Animator>(); // Récupérer l'animator du zombie
         player = GameObject.FindGameObjectWithTag("Player").transform; // Récupération de la position du joueur via le tag
     }
 
@@ -40,20 +38,20 @@ public class ZombieMovement : MonoBehaviour
         timer -= Time.deltaTime;
 
         if (timer <= 0f)
-        {
+        { // Affecter une direction random dans une Sphère
             currentDirection = Random.insideUnitSphere;
             currentDirection.y = 0f;
             currentDirection.Normalize();
-
+            // Affecter l'interval de changement de direction à la variable timer
             timer = changeDirectionInterval;
         }
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        // Si le joueur est à portée
+        // Si la distance du zombie jusqu'au joueur est inférieure à la valeur de la zone de détection du joueur
         if (distanceToPlayer <= playerDetectionRange)
         {
-            transform.LookAt(player); // orientez le zombie vers le joueur
+            transform.LookAt(player); // orienter le zombie vers le joueur
             currentDirection = (player.position - transform.position).normalized; // et suivez-le
             
             isFollowingPlayer = true; // Le zombie est en train de suivre le joueur
@@ -112,22 +110,28 @@ public class ZombieMovement : MonoBehaviour
         }
         else // Sinon
         {
-            // Retourner à la détection des obstacles (murs et portes) pour recherche active du joueur
+            // Utiliser le Raycast avec la position du zombie + la direction qui sera donné en paramètre + le hit du raycast et la variable publique du champ de détection d'un obstacle
             if (Physics.Raycast(transform.position, direction, out RaycastHit hit, obstacleDetectionRange))
-            {
-                if (hit.collider.CompareTag("Wall")) // Si le tag du collider dans le champ de raycast du zombie est wall
+            {   
+                // Si lors de la comparaison des tags, le hit du Raycast tombe sur le tag "Wall"
+                
+                if (hit.collider.CompareTag("Wall")) 
+                {   
+                    // Modifier la variable de direction en cours avec le reflet de la direction donnée à l'origine
+                    currentDirection = Vector3.Reflect(direction, hit.normal);
+                } 
+                
+                // Sinon si lors de la comparaison des tags, le hit du Raycast tombe sur le tag "Door"
+
+                else if (hit.collider.CompareTag("Door"))
                 {
-                    currentDirection = Vector3.Reflect(direction, hit.normal); // Eviter et refléction du mouvement dans un autre sens
-                }
-                else if (hit.collider.CompareTag("Door")) // Si le tag du collider est door
-                {
-                    // Déplacer le zombie pour traverser la porte
+                    // Déplacer le zombie dans la direction établie un peu plus haut à la vitesse donnée en variable publique
                     transform.Translate(direction * movementSpeed * Time.deltaTime, Space.World);
                 }
             }
             else
             {
-                // Déplacer le zombie dans la direction spécifiée
+                // Sinon déplacer le zombie dans la direction d'origine, c'est-à-dire tout droit
                 transform.Translate(direction * movementSpeed * Time.deltaTime, Space.World);
             }
             if (direction != Vector3.zero) // Orienter le zombie dans la direction du mouvement

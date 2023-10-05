@@ -5,28 +5,33 @@ using UnityEngine;
 
 public class PhoneCall : MonoBehaviour
 {
-    public GameObject phone;
-    public AudioSource phoneAudioSource;
-    public AudioClip Call;
+    public GameObject phone; // Référence au GO de l'image du téléphone
+    public AudioSource phoneAudioSource; // Référence à l'audio source 
+    public AudioClip Call; // Référence à l'audio clip
     
     void Start()
     {
-        // Appeler la fonction après 3 secondes
-        StartCoroutine(CallFunctionWithDelay(8f)); // 3 secondes
+        // Appeler la fonction après 8 secondes
+        StartCoroutine(CallFunctionWithDelay(8f));
     }
 
     private IEnumerator CallFunctionWithDelay(float delay)
     {
+
         yield return new WaitForSeconds(delay);
-        // Appeler ta fonction ici
+        // Appele de la fonction ici
         PhoneCalling();
     }
 
     private void PhoneCalling()
     {
+        // Active l'UI du téléphone
         phone.SetActive(true);
+        // Jouer la sonnerie du téléphone
         phoneAudioSource.Play();
+        // Jouer la conversation
         phoneAudioSource.PlayOneShot(Call);
+        // Changement de scène
         SceneManager.LoadScene(2);
     }
 }

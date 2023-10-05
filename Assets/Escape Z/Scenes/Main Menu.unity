@@ -340,7 +340,7 @@ ParticleSystem:
   m_GameObject: {fileID: 436309608}
   serializedVersion: 8
   lengthInSec: 10
-  simulationSpeed: 0.8
+  simulationSpeed: 0.6
   stopAction: 2
   cullingMode: 0
   ringBufferMode: 0
@@ -5168,7 +5168,7 @@ ParticleSystem:
   m_GameObject: {fileID: 489184167}
   serializedVersion: 8
   lengthInSec: 10
-  simulationSpeed: 0.8
+  simulationSpeed: 0.6
   stopAction: 2
   cullingMode: 0
   ringBufferMode: 0
@@ -10026,6 +10026,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1034161081}
   - component: {fileID: 1034161080}
+  - component: {fileID: 1034161082}
   m_Layer: 0
   m_Name: MainMusic
   m_TagString: Untagged
@@ -10043,7 +10044,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 95930b890cf59eb448aa8bdfd0254f52, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -10144,6 +10145,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1034161082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034161079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 549e709eef58a3a4d93c038e4756fbf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicClips:
+  - {fileID: 8300000, guid: 4d3004ec8f8c42f4a8aa22e1081f772d, type: 3}
+  - {fileID: 8300000, guid: eb4bf25706a7e7a4a8c0aab020684e6b, type: 3}
+  - {fileID: 8300000, guid: 2e70f58830df1404fb227ae498de3255, type: 3}
+  - {fileID: 8300000, guid: c62a48a9d413c914e8fd64910d2b41ce, type: 3}
+  - {fileID: 8300000, guid: bc7005e01ba1e06408909b8e0dac7bce, type: 3}
+  delayBetweenClips: 2
 --- !u!1 &1055104478
 GameObject:
   m_ObjectHideFlags: 0
@@ -10342,7 +10362,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1405681473}
   serializedVersion: 8
   lengthInSec: 10
-  simulationSpeed: 0.8
+  simulationSpeed: 0.6
   stopAction: 2
   cullingMode: 0
   ringBufferMode: 0
@@ -15152,7 +15172,6 @@ GameObject:
   - component: {fileID: 1481343952}
   - component: {fileID: 1481343951}
   - component: {fileID: 1481343956}
-  - component: {fileID: 1481343955}
   m_Layer: 5
   m_Name: MainGraphics
   m_TagString: Untagged
@@ -15244,19 +15263,6 @@ RectTransform:
   m_AnchoredPosition: {x: 809.86, y: 346.12}
   m_SizeDelta: {x: 1528, y: 803}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1481343955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1481343950}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d8fbc0d41bde1741b7b0475a0421d5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sortingLayerName: Particles
 --- !u!222 &1481343956
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15471,7 +15477,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1780764109}
   serializedVersion: 8
   lengthInSec: 10
-  simulationSpeed: 0.8
+  simulationSpeed: 0.6
   stopAction: 2
   cullingMode: 0
   ringBufferMode: 0
