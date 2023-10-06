@@ -8,7 +8,8 @@ public class PhoneCall : MonoBehaviour
     public GameObject phoneRingingUI; // Référence au GO de l'image du téléphone qui sonne
     public GameObject phoneConversationUI; // Référence au GO de l'image du téléphone en conversation
     public AudioSource phoneAudioSource; // Référence à l'audio source 
-    public AudioClip callAudioClip; // Référence à l'audio clip
+    public AudioClip conversationAudioClip; // Référence à l'audio clip
+    public AudioClip ringingAudioClip;
     
     void Start()
     {
@@ -35,7 +36,7 @@ public class PhoneCall : MonoBehaviour
         // Active l'UI du téléphone
         phoneRingingUI.SetActive(true);
         // Jouer la sonnerie du téléphone
-        phoneAudioSource.Play();
+        phoneAudioSource.PlayOneShot(ringingAudioClip);
         StartCoroutine(CallPhoneConversationWithDelay(8f));
     }
 
@@ -44,8 +45,8 @@ public class PhoneCall : MonoBehaviour
         phoneRingingUI.SetActive(false);
         phoneConversationUI.SetActive(true);
         // Jouer la conversation
-        phoneAudioSource.PlayOneShot(callAudioClip);
-        StartCoroutine(CallLoadScene2WithDelay(10f));
+        phoneAudioSource.PlayOneShot(conversationAudioClip);
+        StartCoroutine(CallLoadScene2WithDelay(30f));
     }
 
     private IEnumerator CallLoadScene2WithDelay(float delay)

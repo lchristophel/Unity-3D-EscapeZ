@@ -783,7 +783,7 @@ GameObject:
   - component: {fileID: 252904495}
   - component: {fileID: 252904494}
   m_Layer: 5
-  m_Name: UI Called
+  m_Name: PhoneConversation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2923,9 +2923,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e8321a65859ecc4b8ca38224f9834d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phone: {fileID: 954788953}
+  phoneRingingUI: {fileID: 2025131093}
+  phoneConversationUI: {fileID: 252904493}
   phoneAudioSource: {fileID: 954788958}
-  call: {fileID: 8300000, guid: 7d5496f9b516a3f4cbde3270871289aa, type: 3}
+  conversationAudioClip: {fileID: 8300000, guid: 7d5496f9b516a3f4cbde3270871289aa, type: 3}
+  ringingAudioClip: {fileID: 8300000, guid: 52bd860dfcba4ef42b8f98a9034d0f65, type: 3}
 --- !u!1001 &703067463
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4265,7 +4267,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &954788954
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4359,7 +4361,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 52bd860dfcba4ef42b8f98a9034d0f65, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -8314,12 +8316,12 @@ GameObject:
   - component: {fileID: 2025131096}
   - component: {fileID: 2025131095}
   m_Layer: 5
-  m_Name: UI Call
+  m_Name: PhoneRinging
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2025131094
 RectTransform:
   m_ObjectHideFlags: 0
