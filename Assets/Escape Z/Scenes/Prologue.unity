@@ -2810,7 +2810,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   phoneAudioSource: {fileID: 954788958}
-  Call: {fileID: 8300000, guid: 52bd860dfcba4ef42b8f98a9034d0f65, type: 3}
   uiCall: {fileID: 2025131093}
   uiCalled: {fileID: 252904493}
 --- !u!114 &660444161
@@ -2926,6 +2925,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   phone: {fileID: 954788953}
   phoneAudioSource: {fileID: 954788958}
+  call: {fileID: 8300000, guid: 7d5496f9b516a3f4cbde3270871289aa, type: 3}
 --- !u!1001 &703067463
 PrefabInstance:
   m_ObjectHideFlags: 0
