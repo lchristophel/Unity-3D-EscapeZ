@@ -46,7 +46,7 @@ public class PhoneCall : MonoBehaviour
         phoneConversationUI.SetActive(true);
         // Jouer la conversation
         phoneAudioSource.PlayOneShot(conversationAudioClip);
-        StartCoroutine(CallLoadScene2WithDelay(30f));
+        StartCoroutine(CallLoadScene2WithDelay(27f));
     }
 
     private IEnumerator CallLoadScene2WithDelay(float delay)
