@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class FadeManager : MonoBehaviour
+public class FadeManagerPrologue : MonoBehaviour
 {
     public Image fade; // Image utilisée pour le fondu
     public float fadeInDuration = 5.0f; // Durée du fondu entrant en secondes
@@ -52,7 +52,7 @@ public class FadeManager : MonoBehaviour
             return;
 
         // Exemple : appuyez sur "Espace" pour déclencher le fondu sortant
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             FadeOut();
         }
