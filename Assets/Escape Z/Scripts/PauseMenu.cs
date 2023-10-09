@@ -20,7 +20,7 @@ public class PauseMenu : MonoBehaviour
             // Ne pas executer cette fonction
             return;
         }
-        // Sinon si échap est pressée
+        // Sinon si la touche échap est pressée
         else if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPaused) // Mais si l'écran est déjà sur pause
