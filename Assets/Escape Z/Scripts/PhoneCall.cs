@@ -10,6 +10,9 @@ public class PhoneCall : MonoBehaviour
     public AudioSource phoneAudioSource; // Référence à l'audio source 
     public AudioClip conversationAudioClip; // Référence à l'audio clip
     public AudioClip ringingAudioClip;
+    public AudioClip endPhoneAudioClip;
+    public string scene;
+	public Color loadToColor = Color.black;
     
     void Start()
     {
@@ -37,7 +40,7 @@ public class PhoneCall : MonoBehaviour
         phoneRingingUI.SetActive(true);
         // Jouer la sonnerie du téléphone
         phoneAudioSource.PlayOneShot(ringingAudioClip);
-        StartCoroutine(CallPhoneConversationWithDelay(8f));
+        StartCoroutine(CallPhoneConversationWithDelay(6f));
     }
 
     private void PhoneConversation()
@@ -52,8 +55,15 @@ public class PhoneCall : MonoBehaviour
     private IEnumerator CallLoadScene2WithDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        // Changement de scène
-        SceneManager.LoadScene(2);
+        // Son de fin d'appel
+        phoneAudioSource.PlayOneShot(endPhoneAudioClip);
         phoneConversationUI.SetActive(false);
+        // Changement de scène
+        Fade();
+    }
+
+    public void Fade()
+    {
+        Initiate.Fade(scene, loadToColor, 1.0f);
     }
 }
